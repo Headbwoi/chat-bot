@@ -4,8 +4,8 @@ declare global {
   namespace NodeJS {
     interface ProcessEnv {
       MONGO_URL: string
-      //   DB_USER: string
-      //   ENV: "test" | "dev" | "prod"
+      MONGO_URL_LOCAL: string
+      PORT: Number
     }
   }
 }
