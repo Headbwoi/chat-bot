@@ -1,10 +1,10 @@
-import mongoose, { Mongoose } from "mongoose"
+import mongoose from "mongoose"
 
 export const connectDB = async () => {
   try {
-    const conn: void | typeof import("mongoose") = await mongoose
-      .connect(process.env.MONGO_URL)
-      .then(() => console.log(`Database mongodb🚀🚀 connected ${conn}`))
+    await mongoose
+      .connect(`${process.env.MONGO_URL}`)
+      .then(() => console.log(`Database mongodb🚀🚀 connected `))
   } catch (error) {
     console.log(error)
     process.exit(1)
