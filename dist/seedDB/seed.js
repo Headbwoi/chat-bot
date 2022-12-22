@@ -15,8 +15,8 @@ const dataSet = [
         answer: "Hi, Nice to have you, How can i help you?",
     },
     {
-        question: ["Hi", "Hello", "Holla", "wassup"],
-        answer: "Hi, Nice to have you, How can i help you?",
+        question: ["what can you do"],
+        answer: "You can ask me about BUK",
     },
     {
         question: ["Hi", "Hello", "Holla", "wassup"],
