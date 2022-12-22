@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const dataSchema = new mongoose.Schema({
     question: {
-        type: [""],
+        type: String,
         required: true,
     },
     answer: {

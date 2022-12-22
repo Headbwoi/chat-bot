@@ -1,13 +1,13 @@
 import mongoose, { Document } from "mongoose"
 
 export interface IData extends Document {
-  question: String[]
+  question: string
   answer: string
 }
 
 const dataSchema = new mongoose.Schema<IData>({
   question: {
-    type: [""],
+    type: String,
     required: true,
   },
   answer: {

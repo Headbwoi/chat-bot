@@ -7,14 +7,31 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import Data from "../models/dataModel.js";
 import asyncHandler from "express-async-handler";
 export const chatWithBot = asyncHandler((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let prompt = req.body.text;
-    if (prompt.toString().includes("name")) {
-        res.send("Hello my name is bot");
-    }
-    else {
-        res.send("i dont recognise the command");
-    }
-    //   res.send("enter name")
+    const dataSet = yield Data.find({});
+    const data = Object.values(dataSet);
+    let result = data.forEach((item) => {
+        res.json(prompt);
+    });
+    //   res.json(prompt)
+    res.json(result);
+    //   res.json(data.values())
+    //   data.forEach((element) => {
+    //     combinedObj[element.id] = { ...element }
+    //     res.json(combinedObj)
+    //   })
+    const obj = () => {
+        // Array.from(dataSet).map((item) => {
+        //   //   let ques: string = dataSet[2].question
+        //   res.status(200).json(ques)
+        //   if (ques.includes(prompt)) {
+        //     res.status(200).json({ message: item.answer })
+        //   }
+        //   res.status(400).json({ message: "i dont recognise the command" })
+        // })
+    };
+    obj();
 }));
