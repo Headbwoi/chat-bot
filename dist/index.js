@@ -1,6 +1,8 @@
 import express from "express";
 import "dotenv/config.js";
 // connectDB()
+import { seedDB } from "./seedDB/seed.js";
+seedDB();
 const port = process.env.PORT || 5000;
 const app = express();
 app.use(express.json());
