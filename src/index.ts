@@ -2,7 +2,7 @@ import { Express } from "express"
 import express from "express"
 import { connectDB } from "./config/db.js"
 import "dotenv/config.js"
-// connectDB()
+connectDB()
 import { seedDB } from "./seedDB/seed.js"
 
 seedDB()
