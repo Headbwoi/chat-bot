@@ -5,6 +5,7 @@ import "dotenv/config.js"
 connectDB()
 import { seedDB } from "./seedDB/seed.js"
 import botRouter from "./routes/botRoute.js"
+import { errorHandler } from "./middleware/errorMiddleware.js"
 
 // seedDB()
 
@@ -16,5 +17,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 app.use("/", botRouter)
+
+app.use(errorHandler)
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
