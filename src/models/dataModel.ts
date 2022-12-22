@@ -16,4 +16,6 @@ const dataSchema = new mongoose.Schema<IData>({
   },
 })
 
+dataSchema.index({ question: "text" })
+
 export default mongoose.model<IData>("Bot", dataSchema)

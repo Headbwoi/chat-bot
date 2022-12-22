@@ -4,33 +4,18 @@ import { Request, Response } from "express"
 
 export const chatWithBot = asyncHandler(async (req: Request, res: Response) => {
   let prompt: string = req.body.text
-  const dataSet = await Data.find({})
+  const dataSet = await Data.find({ $text: { $search: `${prompt}` } })
+    .sort({ score: { $meta: "textScore" } })
+    .limit(1)
 
   const data = Object.values(dataSet)
 
-  let result = data.forEach((item) => {
-    res.json(prompt)
-  })
-  //   res.json(prompt)
-
-  res.json(result)
-
-  //   res.json(data.values())
-  //   data.forEach((element) => {
-  //     combinedObj[element.id] = { ...element }
-  //     res.json(combinedObj)
-  //   })
-
-  const obj = () => {
-    // Array.from(dataSet).map((item) => {
-    //   //   let ques: string = dataSet[2].question
-    //   res.status(200).json(ques)
-    //   if (ques.includes(prompt)) {
-    //     res.status(200).json({ message: item.answer })
-    //   }
-    //   res.status(400).json({ message: "i dont recognise the command" })
-    // })
+  const ans = data.map((item) => item.answer)
+  const answerResponse = ans.toString()
+  if (answerResponse) {
+    res.status(200).json(answerResponse)
+  } else {
+    res.status(400)
+    throw new Error("Sorry master i'm dumb and didn't recognise the command")
   }
-
-  obj()
 })

@@ -9,4 +9,5 @@ const dataSchema = new mongoose.Schema({
         required: true,
     },
 });
+dataSchema.index({ question: "text" });
 export default mongoose.model("Bot", dataSchema);
