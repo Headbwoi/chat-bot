@@ -4,7 +4,10 @@ import { AppContext } from "../context/AppContext"
 const InputForm = () => {
   const { inputValue, setInputValue, handleUser } = useContext(AppContext)
   return (
-    <div className="absolute bottom-0 left-0 w-full h-14 -mb-14 px-4 flex items-center justify-between">
+    <form
+      className="absolute bottom-0 left-0 w-full h-14 -mb-14 px-4 flex items-center justify-between"
+      onSubmit={(e) => e.preventDefault()}
+    >
       <input
         type="text"
         className="w-full h-full pr-5 outline-none bg-black text-white placeholder:text-gray-400"
@@ -12,7 +15,8 @@ const InputForm = () => {
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
-      <div
+      <button
+        type="submit"
         className="w-7 h-7 rounded-full bg-gray-700 grid place-items-center"
         onClick={handleUser}
       >
@@ -26,8 +30,8 @@ const InputForm = () => {
             fill="currentColor"
           />
         </svg>
-      </div>
-    </div>
+      </button>
+    </form>
   )
 }
 

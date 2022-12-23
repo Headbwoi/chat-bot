@@ -1,4 +1,5 @@
 import { ReactNode, createContext, useEffect, useState } from "react"
+import axios from "axios"
 
 type AppContextType = {
   inputValue: string
@@ -8,6 +9,8 @@ type AppContextType = {
   handleUser: () => void
   userText: string
   setUserText: React.Dispatch<React.SetStateAction<string>>
+  loading: boolean
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>
 }
 type AppContextProviderType = {
   children: ReactNode
@@ -19,31 +22,27 @@ export const AppContextProvider = ({ children }: AppContextProviderType) => {
   const [inputValue, setInputValue] = useState<string>("")
   const [userText, setUserText] = useState(inputValue)
   const [botText, setBotText] = useState<string>("Talt to me")
-
-  const getBotData = async () => {
-    const botinput = {
-      text: userText,
-    }
-    const data = await fetch(`${import.meta.env.VITE_LOCAL}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(botinput),
-    })
-
-    const res = await data.json()
-    if (data.status === 400) {
-      setBotText(res.message)
-    } else {
-      setBotText(res.toString())
-    }
-  }
+  const [loading, setLoading] = useState(false)
 
   const handleUser = () => {
+    setLoading(true)
     setUserText(inputValue)
     setInputValue("")
-    getBotData()
+    axios
+      .post(`${import.meta.env.VITE_LOCAL}`, {
+        text: userText,
+      })
+      .then(function (response) {
+        if (response.status === 400) {
+          setBotText(response.data.message)
+        } else {
+          setBotText(response.data)
+          setLoading(false)
+        }
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
   return (
     <AppContext.Provider
@@ -55,6 +54,8 @@ export const AppContextProvider = ({ children }: AppContextProviderType) => {
         handleUser,
         userText,
         setUserText,
+        loading,
+        setLoading,
       }}
     >
       {children}
