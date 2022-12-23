@@ -29,7 +29,7 @@ export const AppContextProvider = ({ children }: AppContextProviderType) => {
     setUserText(inputValue)
     setInputValue("")
     axios
-      .post(`${import.meta.env.VITE_LOCAL}`, {
+      .post(`${import.meta.env.VITE_BACKEND_URL}`, {
         text: userText,
       })
       .then(function (response) {
