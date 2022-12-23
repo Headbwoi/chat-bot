@@ -3,11 +3,8 @@ import express from "express"
 import { connectDB } from "./config/db.js"
 import "dotenv/config.js"
 connectDB()
-import { seedDB } from "./seedDB/seed.js"
 import botRouter from "./routes/botRoute.js"
 import { errorHandler } from "./middleware/errorMiddleware.js"
-
-seedDB()
 
 const port = process.env.PORT || 5000
 
