@@ -1,5 +1,4 @@
 import mongoose from "mongoose"
-import { seedDB } from "../seedDB/seed.js"
 
 export const connectDB = async () => {
   try {
@@ -11,5 +10,3 @@ export const connectDB = async () => {
     process.exit(1)
   }
 }
-
-seedDB()

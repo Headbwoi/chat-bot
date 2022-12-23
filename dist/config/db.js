@@ -8,7 +8,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import mongoose from "mongoose";
-import { seedDB } from "../seedDB/seed.js";
 export const connectDB = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield mongoose
@@ -20,4 +19,3 @@ export const connectDB = () => __awaiter(void 0, void 0, void 0, function* () {
         process.exit(1);
     }
 });
-seedDB();
