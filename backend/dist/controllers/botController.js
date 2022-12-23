@@ -11,14 +11,13 @@ import Data from "../models/dataModel.js";
 import asyncHandler from "express-async-handler";
 export const chatWithBot = asyncHandler((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let prompt = req.body.text;
-    const dataSet = yield Data.find({ $text: { $search: `${prompt}` } })
+    const query = yield Data.find({ $text: { $search: `${prompt}` } })
         .sort({ score: { $meta: "textScore" } })
         .limit(1);
-    const data = Object.values(dataSet);
-    const ans = data.map((item) => item.answer);
-    const answerResponse = ans.toString();
-    if (answerResponse) {
-        res.status(200).json(answerResponse);
+    const data = query.map((item) => item.answer);
+    const queryResponse = data.toString();
+    if (queryResponse) {
+        res.status(200).json(queryResponse);
     }
     else {
         res.status(400);
