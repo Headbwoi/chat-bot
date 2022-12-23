@@ -2,11 +2,8 @@ import mongoose from "mongoose"
 import Data from "../models/dataModel.js"
 const dataSet = [
   {
-    question: "Hi Hello Holla wassup",
-    answer: "Hi, Nice to have you, How can i help you?",
-  },
-  {
-    question: "what can you do",
+    question:
+      "what can you do what do you can what are your capabilities what are you capable of",
     answer: "You can ask me about BUK",
   },
   {
@@ -16,6 +13,10 @@ const dataSet = [
   {
     question: "who is the vc",
     answer: "sagir something i dunno",
+  },
+  {
+    question: "Hi Hello Holla wassup hey start begin initiate init",
+    answer: "Hi, Nice to have you, How can i help you?",
   },
 ]
 

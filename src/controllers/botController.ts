@@ -10,8 +10,8 @@ export const chatWithBot = asyncHandler(async (req: Request, res: Response) => {
 
   const data = Object.values(dataSet)
 
-  const ans = data.map((item) => item.answer)
-  const answerResponse = ans.toString()
+  const ans: string[] = data.map((item) => item.answer)
+  const answerResponse: string = ans.toString()
   if (answerResponse) {
     res.status(200).json(answerResponse)
   } else {

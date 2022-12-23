@@ -2,9 +2,10 @@ import express from "express";
 import { connectDB } from "./config/db.js";
 import "dotenv/config.js";
 connectDB();
+import { seedDB } from "./seedDB/seed.js";
 import botRouter from "./routes/botRoute.js";
 import { errorHandler } from "./middleware/errorMiddleware.js";
-// seedDB()
+seedDB();
 const port = process.env.PORT || 5000;
 const app = express();
 app.use(express.json());
