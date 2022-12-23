@@ -21,14 +21,23 @@ export const AppContextProvider = ({ children }: AppContextProviderType) => {
   const [botText, setBotText] = useState<string>("Talt to me")
 
   const getBotData = async () => {
-    const data = await fetch(`${import.meta.env.BACKEND_URL}`, {
+    const botinput = {
+      text: userText,
+    }
+    const data = await fetch(`${import.meta.env.VITE_LOCAL}`, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(userText),
+      body: JSON.stringify(botinput),
     })
-    console.log(data)
-    return data.json()
+
+    const res = await data.json()
+    if (data.status === 400) {
+      setBotText(res.message)
+    } else {
+      setBotText(res.toString())
+    }
   }
 
   const handleUser = () => {

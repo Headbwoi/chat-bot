@@ -7,15 +7,25 @@ import { errorHandler } from "./middleware/errorMiddleware.js";
 import cors from "cors";
 const port = process.env.PORT || 5000;
 const app = express();
+const whitelist = [
+    "http://localhost:3000",
+    "http://localhost:3001",
+    "https://dumb-chatbot.vercel.app",
+];
+const corsOptions = {
+    origin: function (origin, callback) {
+        //@ts-ignore
+        if (whitelist.indexOf(origin) !== -1) {
+            callback(null, true);
+        }
+        else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors({
-    origin: [
-        "http://localhost:3000",
-        "http://localhost:3001",
-        "https://dumb-chatbot.vercel.app",
-    ],
-}));
 app.use("/", botRouter);
 app.use(errorHandler);
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
