@@ -1,10 +1,12 @@
 import { useState } from "react"
-import { Header } from "./components"
+import { Footer, Header, Layout } from "./components"
 
 function App() {
   return (
     <>
       <Header />
+      <Layout />
+      <Footer />
     </>
   )
 }
