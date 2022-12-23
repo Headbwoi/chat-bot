@@ -22,6 +22,6 @@ export const chatWithBot = asyncHandler((req, res) => __awaiter(void 0, void 0, 
     }
     else {
         res.status(400);
-        throw new Error("Sorry master i'm dumb and didn't recognise the command");
+        throw new Error("Sorry master i'm dumb and didn't recognise the command. 😣😔. Please be more Specific");
     }
 }));

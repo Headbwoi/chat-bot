@@ -16,6 +16,8 @@ export const chatWithBot = asyncHandler(async (req: Request, res: Response) => {
     res.status(200).json(answerResponse)
   } else {
     res.status(400)
-    throw new Error("Sorry master i'm dumb and didn't recognise the command")
+    throw new Error(
+      "Sorry master i'm dumb and didn't recognise the command. 😣😔. Please be more Specific"
+    )
   }
 })
