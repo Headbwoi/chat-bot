@@ -20,29 +20,37 @@ export const AppContext = createContext<AppContextType>({} as AppContextType)
 
 export const AppContextProvider = ({ children }: AppContextProviderType) => {
   const [inputValue, setInputValue] = useState<string>("")
-  const [userText, setUserText] = useState(inputValue)
-  const [botText, setBotText] = useState<string>("Talt to me")
+  const [userText, setUserText] = useState("")
+  const [botText, setBotText] = useState<string>("Talk to me")
   const [loading, setLoading] = useState(false)
+
+  const handleData = async () => {
+    const data = {
+      text: userText,
+    }
+
+    axios
+      .post(`${import.meta.env.VITE_BACKEND_URL}`, data)
+      .then(function (response) {
+        if (response) {
+          setLoading(false)
+        }
+        if (!response) {
+          setBotText("Sorry master i'm dumb and didn't recognise the command. ")
+        }
+        if (response.status == 200) {
+          setBotText(response.data)
+        } else {
+          setBotText(response.data.message)
+        }
+      })
+  }
 
   const handleUser = () => {
     setLoading(true)
     setUserText(inputValue)
     setInputValue("")
-    axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}`, {
-        text: userText,
-      })
-      .then(function (response) {
-        if (response.status === 400) {
-          setBotText(response.data.message)
-        } else {
-          setBotText(response.data)
-          setLoading(false)
-        }
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+    handleData()
   }
   return (
     <AppContext.Provider

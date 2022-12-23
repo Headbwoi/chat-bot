@@ -1,8 +1,15 @@
-import { useContext } from "react"
+import { ChangeEvent, useContext } from "react"
 import { AppContext } from "../context/AppContext"
 
 const InputForm = () => {
-  const { inputValue, setInputValue, handleUser } = useContext(AppContext)
+  const { inputValue, setInputValue, handleUser, setUserText } =
+    useContext(AppContext)
+
+  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value)
+    setUserText(e.target.value)
+  }
+
   return (
     <form
       className="absolute bottom-0 left-0 w-full h-14 -mb-14 px-4 flex items-center justify-between"
@@ -13,7 +20,7 @@ const InputForm = () => {
         className="w-full h-full pr-5 outline-none bg-black text-white placeholder:text-gray-400"
         placeholder="Enter text"
         value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
+        onChange={(e) => handleInput(e)}
       />
       <button
         type="submit"
