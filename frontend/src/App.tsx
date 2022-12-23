@@ -1,12 +1,14 @@
 import { useState } from "react"
-import { Footer, Header, Layout } from "./components"
+import { AppContextProvider, Footer, Header, Layout } from "./components"
 
 function App() {
   return (
     <>
       <Header />
-      <Layout />
-      <Footer />
+      <AppContextProvider>
+        <Layout />
+        <Footer />
+      </AppContextProvider>
     </>
   )
 }

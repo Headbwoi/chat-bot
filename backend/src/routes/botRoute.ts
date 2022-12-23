@@ -4,6 +4,6 @@ import { chatWithBot } from "../controllers/botController.js"
 
 const router: Router = express.Router()
 
-router.get("/", chatWithBot)
+router.post("/", chatWithBot)
 
 export default router

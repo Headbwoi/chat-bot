@@ -1,12 +1,21 @@
+import { useContext } from "react"
+import { AppContext } from "../context/AppContext"
+
 const InputForm = () => {
+  const { inputValue, setInputValue, handleUser } = useContext(AppContext)
   return (
     <div className="absolute bottom-0 left-0 w-full h-14 -mb-14 px-4 flex items-center justify-between">
       <input
         type="text"
         className="w-full h-full pr-5 outline-none bg-black text-white placeholder:text-gray-400"
         placeholder="Enter text"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
       />
-      <div className="w-7 h-7 rounded-full bg-gray-700 grid place-items-center">
+      <div
+        className="w-7 h-7 rounded-full bg-gray-700 grid place-items-center"
+        onClick={handleUser}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 384 512"
