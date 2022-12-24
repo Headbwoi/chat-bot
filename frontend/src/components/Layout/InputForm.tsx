@@ -12,7 +12,7 @@ const InputForm = () => {
 
   return (
     <form
-      className="absolute bottom-0 left-0 w-full h-14 -mb-16 md:-mb-8 px-4 flex items-center justify-between border border-slate-600"
+      className="absolute bottom-0 left-0 w-full h-14 -mb-16 md:-mb-8 lg:mb-6 px-4 flex items-center justify-between border border-slate-600"
       onSubmit={(e) => e.preventDefault()}
     >
       <input
