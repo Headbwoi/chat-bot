@@ -20,7 +20,7 @@ export const AppContext = createContext<AppContextType>({} as AppContextType)
 export const AppContextProvider = ({ children }: AppContextProviderType) => {
   const [inputValue, setInputValue] = useState<string>("")
   const [userText, setUserText] = useState("")
-  const [botText, setBotText] = useState<string>("Talk to me")
+  const [botText, setBotText] = useState<string>("How can i help you")
   const [loading, setLoading] = useState(false)
 
   const handleData = async (bodyData: {}) => {

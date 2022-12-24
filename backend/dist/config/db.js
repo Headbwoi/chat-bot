@@ -11,7 +11,7 @@ import mongoose from "mongoose";
 export const connectDB = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield mongoose
-            .connect(`${process.env.MONGO_URL}`)
+            .connect(`${process.env.MONGO_URL_LOCAL}`)
             .then(() => console.log(`Database mongodb🚀🚀 connected `));
     }
     catch (error) {
