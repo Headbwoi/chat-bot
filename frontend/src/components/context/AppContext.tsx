@@ -1,5 +1,4 @@
 import { ReactNode, createContext, useEffect, useState } from "react"
-import axios from "axios"
 
 type AppContextType = {
   inputValue: string
@@ -24,33 +23,33 @@ export const AppContextProvider = ({ children }: AppContextProviderType) => {
   const [botText, setBotText] = useState<string>("Talk to me")
   const [loading, setLoading] = useState(false)
 
-  const handleData = async () => {
-    const data = {
-      text: userText,
+  const handleData = async (bodyData: {}) => {
+    const data = await fetch(`${import.meta.env.VITE_BACKEND_URL}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(bodyData),
+    })
+
+    const res = await data.json()
+    if (res) {
+      setLoading(false)
     }
-
-    axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}`, data)
-      .then(function (response) {
-        if (response) {
-          setLoading(false)
-        }
-        if (!response) {
-          setBotText("Sorry master i'm dumb and didn't recognise the command. ")
-        }
-        if (response.status == 200) {
-          setBotText(response.data)
-        } else {
-          setBotText(response.data.message)
-        }
-      })
+    if (data.status === 400) {
+      setBotText(res.message)
+    } else {
+      setBotText(res.toString())
+    }
   }
-
   const handleUser = () => {
     setLoading(true)
     setUserText(inputValue)
     setInputValue("")
-    handleData()
+    const bodyData = {
+      text: userText,
+    }
+    handleData(bodyData)
   }
   return (
     <AppContext.Provider
