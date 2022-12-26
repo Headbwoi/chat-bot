@@ -23,4 +23,9 @@ export const dataSet = [
     answer:
       "My Supreme Master goes by the Alias Xeux, He is very smart as he made me in 2 days.",
   },
+  {
+    question: "shit, fuck, motherfucker, fool, stupid, idiot",
+    answer:
+      "Please don't use curse words for me, i am dumb doesn't mean i won't learn over time.",
+  },
 ]

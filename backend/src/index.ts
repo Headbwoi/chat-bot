@@ -5,7 +5,7 @@ import "dotenv/config.js"
 connectDB()
 import botRouter from "./routes/botRoute.js"
 import { errorHandler } from "./middleware/errorMiddleware.js"
-import cors, { CorsOptions, CorsRequest } from "cors"
+import cors, { CorsOptions } from "cors"
 
 const port = process.env.PORT || 5000
 
