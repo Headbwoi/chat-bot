@@ -7,11 +7,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import Data from "../models/dataModel.js";
+import Bot, { dataSchema } from "../models/dataModel.js";
 import asyncHandler from "express-async-handler";
+dataSchema.index({ question: "text" });
 export const chatWithBot = asyncHandler((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let prompt = req.body.text;
-    const query = yield Data.find({ $text: { $search: `${prompt}` } })
+    const query = yield Bot.find({ $text: { $search: `${prompt}` } })
         .sort({ score: { $meta: "textScore" } })
         .limit(1);
     const data = query.map((item) => item.answer);

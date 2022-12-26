@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const dataSchema = new mongoose.Schema({
+export const dataSchema = new mongoose.Schema({
     question: {
         type: String,
         required: true,
@@ -9,5 +9,4 @@ const dataSchema = new mongoose.Schema({
         required: true,
     },
 });
-dataSchema.index({ question: "text" });
 export default mongoose.model("Bot", dataSchema);

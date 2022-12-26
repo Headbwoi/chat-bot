@@ -5,7 +5,7 @@ export interface IData extends Document {
   answer: string
 }
 
-const dataSchema = new mongoose.Schema<IData>({
+export const dataSchema = new mongoose.Schema<IData>({
   question: {
     type: String,
     required: true,
@@ -15,7 +15,5 @@ const dataSchema = new mongoose.Schema<IData>({
     required: true,
   },
 })
-
-dataSchema.index({ question: "text" })
 
 export default mongoose.model<IData>("Bot", dataSchema)
