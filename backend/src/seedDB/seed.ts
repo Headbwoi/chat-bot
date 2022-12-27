@@ -1,5 +1,5 @@
 import mongoose from "mongoose"
-import Data from "../models/dataModel.js"
+import Data, { dataSchema } from "../models/dataModel.js"
 import { dataSet } from "./data.js"
 import "dotenv/config.js"
 
@@ -12,6 +12,7 @@ export const seedDB = async () => {
     await Data.insertMany(dataSet).then(() =>
       console.log("seed completed 😊🚀")
     )
+    dataSchema.index({ question: "text" })
   } catch (error) {
     console.log(error)
     process.exit(1)

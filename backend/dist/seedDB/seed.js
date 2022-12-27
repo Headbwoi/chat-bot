@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import mongoose from "mongoose";
-import Data from "../models/dataModel.js";
+import Data, { dataSchema } from "../models/dataModel.js";
 import { dataSet } from "./data.js";
 import "dotenv/config.js";
 export const seedDB = () => __awaiter(void 0, void 0, void 0, function* () {
@@ -18,6 +18,7 @@ export const seedDB = () => __awaiter(void 0, void 0, void 0, function* () {
             .then(() => console.log(`Database mongodb🚀🚀 connected `));
         yield Data.deleteMany({}).then(() => console.log("seeding database..."));
         yield Data.insertMany(dataSet).then(() => console.log("seed completed 😊🚀"));
+        dataSchema.index({ question: "text" });
     }
     catch (error) {
         console.log(error);

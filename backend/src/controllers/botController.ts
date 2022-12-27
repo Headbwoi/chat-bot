@@ -1,8 +1,6 @@
-import Bot, { dataSchema } from "../models/dataModel.js"
+import Bot from "../models/dataModel.js"
 import asyncHandler from "express-async-handler"
 import { Request, Response } from "express"
-
-dataSchema.index({ question: "text" })
 
 export const chatWithBot = asyncHandler(async (req: Request, res: Response) => {
   let prompt: string = req.body.text
